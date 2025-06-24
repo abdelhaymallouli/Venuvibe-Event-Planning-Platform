@@ -26,7 +26,10 @@ $user->email = $data->email;
 
 if ($user->emailExists()) {
     error_log("Login.php: User found for email: {$data->email}, stored password hash: {$user->password}");
-    if (password_verify($data->password, $user->password)) {
+    if (empty($user->password)) {
+        error_log("Login.php: No password set for email: {$data->email} (likely OAuth user)");
+        ApiResponse::error("This account uses Google OAuth. Please log in with Google.", 401);
+    } elseif (password_verify($data->password, $user->password)) {
         $payload = [
             'user_id' => $user->id,
             'username' => $user->name,
@@ -43,7 +46,7 @@ if ($user->emailExists()) {
                     "id" => $user->id,
                     "username" => $user->name,
                     "email" => $user->email
-                ]
+                ] 
             ],
             "Login successful"
         );

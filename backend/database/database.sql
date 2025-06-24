@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2025 at 07:34 PM
+-- Generation Time: Jun 24, 2025 at 03:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -61,9 +61,9 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id_client`, `name`, `email`, `password`, `creation_date`) VALUES
-(1, 'abdelhay', 'yassir@gmail.com', '$2y$10$lF5yn2bDbRlZD8WoIRatReealO6Eu7u1WQU0PDNGZ1CNuFrlqYV56', '2025-05-30 18:57:21'),
-(2, 'abdelhay mallouli', 'abdelhay.mallouli.solicode@gmail.com', '$2y$10$iRnaRixiZj8JlrPvDsIYnuOeZ/eOLYJuIwYMZK4Ifp3ReduwsaQjm', '2025-06-01 21:11:34'),
-(3, 'mallouliabdelhay622', 'mallouli.abdelhay.solicode@gmail.com', '$2y$10$DIrsWysWZkocNCPaPVHjwuW7jSmkZFyD23Rqr2TjpfgBzU6aQwlc2', '2025-06-19 14:50:33');
+(5, 'abdelhay', 'abdelhay.mallouli.solicode@gmail.com', '$2y$10$qtnLBd.D4oOzsWlqe9GeXOPd3D2MO/rrA3c.ITeS1m0ZvnhD2ON/y', '2025-06-24 10:21:48'),
+(6, 'mallouliabdelhay831', 'mallouli.abdelhay.solicode@gmail.com', '', '2025-06-24 10:32:40'),
+(7, 'ibouha', 'admin@gmail.com', '$2y$10$M2U4kwQEnUi/D4sGCaFQKejLDMaBXR72F78o4TUAmRILNXoKGNxsO', '2025-06-24 11:41:18');
 
 -- --------------------------------------------------------
 
@@ -86,33 +86,6 @@ CREATE TABLE `event` (
   `id_type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `event`
---
-
-INSERT INTO `event` (`id_event`, `title`, `event_date`, `location`, `banner_image`, `description`, `status`, `expected_guests`, `budget`, `creation_date`, `id_client`, `id_type`) VALUES
-(11, 'Summer Garden Wedding', '2025-07-15', 'Rosewood Manor, CA', 'https://images.unsplash.com/photo-1566933292668-7f9b4d4038ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A romantic outdoor wedding with floral decorations and live music.', 'Planned', 150, 25001.00, '2025-05-30 19:08:39', 1, 2),
-(12, '30th Birthday Bash', '2025-08-22', 'Downtown Loft, NY', 'https://images.unsplash.com/photo-1517457373958-b4bdd8b50cac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A vibrant birthday party with DJ and rooftop views.', 'Planned', 50, 5000.00, '2025-05-30 19:08:39', 1, 2),
-(13, 'TechCorp Annual Summit', '2025-09-10', 'Convention Center, SF', 'https://images.unsplash.com/photo-1516321318427-4b1c11f8e668?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A corporate summit featuring keynote speakers and networking.', 'Planned', 300, 75000.00, '2025-05-30 19:08:39', 1, 3),
-(14, 'Rock Legends Concert', '2025-10-05', 'City Arena, TX', 'https://images.unsplash.com/photo-1493225457124-fd3f7a3c2a88?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A high-energy concert with top rock bands.', 'Planned', 5000, 150000.00, '2025-05-30 19:08:39', 1, 4),
-(15, 'Winter Vows Ceremony', '2025-12-20', 'Snowy Pines Lodge, CO', 'https://images.unsplash.com/photo-1519741497674-4113f4c0a2c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A cozy winter wedding in a mountain lodge.', 'Planned', 80, 19000.00, '2025-05-30 19:08:39', 1, 1),
-(16, 'Kids Birthday Extravaganza', '2025-11-12', 'FunZone Park, FL', 'https://images.unsplash.com/photo-1530103862298-25c821d723ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A fun-filled birthday with games and entertainment for kids.', 'Planned', 30, 3000.00, '2025-05-30 19:08:39', 1, 2),
-(17, 'Startup Networking Event', '2025-10-25', 'Tech Hub, Boston', 'https://images.unsplash.com/photo-1516321318427-4b1c11f8e668?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A networking event for startups and investors.', 'Planned', 100, 10000.00, '2025-05-30 19:08:39', 1, 3),
-(18, 'Jazz Night Concert', '2025-11-30', 'Blue Note Club, NY', 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'An intimate jazz concert with renowned artists.', 'Planned', 200, 12000.00, '2025-05-30 19:08:39', 1, 4),
-(19, 'Beachside Wedding', '2025-06-30', 'Ocean Breeze Resort, FL', 'https://images.unsplash.com/photo-1515934751633-2054f0c73f42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A beachfront wedding with sunset views.', 'Planned', 120, 22034.00, '2025-05-30 19:08:39', 1, 1),
-(20, 'Corporate Charity Gala', '2025-12-05', 'Grand Ballroom, Chicago', 'https://images.unsplash.com/photo-1515169067868-5387ec356754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80', 'A formal gala to raise funds for local charities.', 'Planned', 250, 50000.00, '2025-05-30 19:08:39', 1, 3),
-(24, 'Birthday', '2025-05-24', 'Tangier', NULL, '', 'Planned', 450, 4000.00, '2025-05-30 22:37:43', 1, 3),
-(28, 'Ahmed Birthday', '2025-06-07', 'Tangier', NULL, '', 'Planned', 4304, 10000.00, '2025-05-31 12:37:00', 1, 1),
-(29, 'Wedding', '2025-05-27', 'Tangier', NULL, '', 'Planned', 240, 1000.00, '2025-05-31 13:27:20', 1, 2),
-(30, 'Ahmed Birthday', '2025-05-14', 'Tangier', NULL, '', 'Planned', 450, 5000.00, '2025-05-31 17:15:31', 1, 1),
-(31, 'Birthday', '2025-06-04', 'Tangier', NULL, '', 'Planned', 450, 4000.00, '2025-05-31 17:22:06', 1, 2),
-(32, 'Happy Birthday', '2025-06-11', 'Tangier', NULL, '', 'Planned', 454, 9999.00, '2025-06-01 14:30:31', 1, 2),
-(33, 'Birthday', '2025-06-12', 'Tangier', NULL, '', 'Planned', 33, 4500.00, '2025-06-01 19:34:40', 1, 2),
-(34, 'Abdelhay', '2025-06-01', 'Snowy Pines Lodge, CO', NULL, '', 'Planned', 250, 5000.00, '2025-06-01 21:10:00', 1, 3),
-(35, 'Ahmed Birthday', '2025-06-13', 'Snowy Pines Lodge, CO', NULL, '', 'Ongoing', 45, 1000.00, '2025-06-01 21:42:23', 2, 2),
-(36, 'Abdelhay', '2025-06-29', 'Tangier', NULL, '', 'Completed', 50, 4999.00, '2025-06-01 22:30:54', 2, 2),
-(37, 'abdelhay wedding', '2025-06-09', 'tangier', NULL, '', 'Planned', 454, 6000.00, '2025-06-02 20:09:13', 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -133,7 +106,7 @@ CREATE TABLE `oauth_providers` (
 --
 
 INSERT INTO `oauth_providers` (`id_oauth`, `id_client`, `provider`, `provider_id`, `provider_data`, `created_at`) VALUES
-(1, 3, 'google', '108872080932087569926', '{\"name\":\"MALLOULI Abdelhay\",\"given_name\":\"MALLOULI\",\"family_name\":\"Abdelhay\",\"picture\":\"https:\\/\\/lh3.googleusercontent.com\\/a\\/ACg8ocIiZyWUFyvCLypF_bTKgbGn80mBa054_y5k0Wjw2nfIeBNa8Q=s96-c\",\"email\":\"mallouli.abdelhay.solicode@gmail.com\"}', '2025-06-19 14:50:33');
+(3, 6, 'google', '108872080932087569926', '{\"name\":\"MALLOULI Abdelhay\",\"given_name\":\"MALLOULI\",\"family_name\":\"Abdelhay\",\"picture\":\"https:\\/\\/lh3.googleusercontent.com\\/a\\/ACg8ocIiZyWUFyvCLypF_bTKgbGn80mBa054_y5k0Wjw2nfIeBNa8Q=s96-c\",\"email\":\"mallouli.abdelhay.solicode@gmail.com\"}', '2025-06-24 10:32:40');
 
 -- --------------------------------------------------------
 
@@ -152,37 +125,6 @@ CREATE TABLE `request` (
   `id_vendor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `request`
---
-
-INSERT INTO `request` (`id_request`, `title`, `description`, `deadline`, `status`, `id_event`, `id_transaction`, `id_vendor`) VALUES
-(11, 'Confirm details with Starlight Decor', NULL, NULL, 'In Progress', 24, 34, 2),
-(12, 'Confirm details with Bliss Photography', NULL, NULL, 'Cancelled', 24, 35, 4),
-(13, 'Confirm details with Tasty Treats', NULL, NULL, 'In Progress', 28, 4, 6),
-(14, 'Confirm details with Bright Lights', NULL, NULL, 'Completed', 28, 5, 7),
-(15, 'Confirm details with Pure Elegance', NULL, NULL, 'Completed', 28, 6, 8),
-(16, 'Confirm details with Golden Venue', NULL, NULL, 'Completed', 29, 7, 5),
-(17, 'Confirm details with Tasty Treats', NULL, NULL, 'Open', 29, 8, 6),
-(18, 'Confirm details with Elite Catering', NULL, NULL, 'Open', 30, 9, 1),
-(19, 'Confirm details with Starlight Decor', NULL, NULL, 'Open', 30, 10, 2),
-(20, 'Confirm details with Harmony Music', NULL, NULL, 'Open', 30, 11, 3),
-(21, 'Confirm details with Bliss Photography', NULL, NULL, 'Open', 30, 12, 4),
-(22, 'Confirm details with Golden Venue', NULL, NULL, 'Open', 30, 13, 5),
-(23, 'Confirm details with Tasty Treats', NULL, NULL, 'Open', 30, 14, 6),
-(24, 'Confirm details with Chic Designs', NULL, NULL, 'Open', 30, 15, 16),
-(25, 'Confirm details with Sparkle Events', NULL, NULL, 'Open', 30, 16, 18),
-(32, 'Confirm details with Elite Catering', NULL, NULL, 'In Progress', 11, 23, 1),
-(33, 'Confirm details with Starlight Decor', NULL, NULL, 'In Progress', 11, 24, 2),
-(34, 'Confirm details with Bliss Photography', NULL, NULL, 'Open', 11, 25, 4),
-(42, 'Photography', NULL, NULL, 'Open', 28, 36, 3),
-(43, 'Photography', NULL, NULL, 'Open', 15, 37, 4),
-(44, '', NULL, NULL, 'Completed', 37, 38, NULL),
-(45, 'Confirm details with Starlight Decor', NULL, NULL, 'Completed', 37, 39, 2),
-(46, 'Confirm details with Harmony Music', NULL, NULL, 'Open', 37, 40, 3),
-(47, 'Confirm details with Bliss Photography', NULL, NULL, 'Open', 37, 41, 4),
-(48, 'photography', NULL, NULL, 'Open', 15, 42, 17);
-
 -- --------------------------------------------------------
 
 --
@@ -195,38 +137,6 @@ CREATE TABLE `transaction` (
   `transaction_date` datetime DEFAULT current_timestamp(),
   `id_event` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `transaction`
---
-
-INSERT INTO `transaction` (`id_transaction`, `amount`, `transaction_date`, `id_event`) VALUES
-(4, 600.00, '2025-05-31 12:37:00', 28),
-(5, 900.00, '2025-05-31 12:37:00', 28),
-(6, 1100.00, '2025-05-31 12:37:00', 28),
-(7, 1000.00, '2025-05-31 13:27:20', 29),
-(8, 300.00, '2025-05-31 13:27:20', 29),
-(9, 1500.00, '2025-05-31 17:15:31', 30),
-(10, 1000.00, '2025-05-31 17:15:31', 30),
-(11, 1200.00, '2025-05-31 17:15:31', 30),
-(12, 800.00, '2025-05-31 17:15:00', 30),
-(13, 2500.00, '2025-05-31 17:15:31', 30),
-(14, 600.00, '2025-05-31 17:15:31', 30),
-(15, 1100.00, '2025-05-31 17:15:31', 30),
-(16, 1000.00, '2025-05-31 17:15:31', 30),
-(23, 800.00, '2025-06-01 11:54:24', 11),
-(24, 500.00, '2025-06-01 11:54:24', 11),
-(25, 400.00, '2025-06-01 11:54:24', 11),
-(33, 1500.00, '2025-06-01 14:20:13', 24),
-(34, 500.00, '2025-06-01 14:20:13', 24),
-(35, 400.00, '2025-06-01 14:20:13', 24),
-(36, 1200.00, '2025-06-01 22:09:10', 28),
-(37, 800.00, '2025-06-01 22:09:24', 15),
-(38, 1500.00, '2025-06-02 20:09:13', 37),
-(39, 1000.00, '2025-06-02 20:09:13', 37),
-(40, 1200.00, '2025-06-02 20:09:13', 37),
-(41, 800.00, '2025-06-02 20:09:13', 37),
-(42, 1300.00, '2025-06-12 18:20:30', 15);
 
 -- --------------------------------------------------------
 
@@ -478,31 +388,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `oauth_providers`
 --
 ALTER TABLE `oauth_providers`
-  MODIFY `id_oauth` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_oauth` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id_request` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_request` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `type`

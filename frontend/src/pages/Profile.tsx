@@ -9,7 +9,9 @@ import {
   AlertCircle,
   Shield,
   UserCircle,
-  Link
+  Link,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -51,6 +53,11 @@ const Profile: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'profile' | 'password' | 'connected'>('profile');
   const [providers, setProviders] = useState<string[]>([]);
+  const [showPasswords, setShowPasswords] = useState({
+    currentPassword: false,
+    newPassword: false,
+    confirmNewPassword: false,
+  });
 
   useEffect(() => {
     if (currentUser?.id) {
@@ -102,6 +109,10 @@ const Profile: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const togglePasswordVisibility = (field: keyof typeof showPasswords) => {
+    setShowPasswords((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
   const handleProfileUpdate = async (e: React.FormEvent) => {
@@ -197,11 +208,6 @@ const Profile: React.FC = () => {
       return;
     }
 
-    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(formData.newPassword)) {
-      setError('Password must be at least 8 characters, include uppercase, lowercase, number, and special character');
-      setLoading(false);
-      return;
-    }
 
     try {
       const response = await axios.put(`${API_URL}update_password.php`, {
@@ -223,16 +229,24 @@ const Profile: React.FC = () => {
           newPassword: '',
           confirmNewPassword: '',
         });
+        // Optionally log out after password change for security
+        setTimeout(() => {
+          logout();
+          navigate('/login');
+        }, 2000);
       } else {
         setError(response.data.error || 'Failed to change password');
       }
     } catch (err: any) {
+      console.error('Password change error:', err);
       if (err.response?.status === 401) {
-        setError('Session expired. Please log in again.');
+        setError('Session expired or invalid credentials. Please log in again.');
         logout();
         navigate('/login');
+      } else if (err.response?.status === 400) {
+        setError(err.response.data.error || 'Invalid current password or requirements not met.');
       } else {
-        setError(err.response?.data?.error || 'An error occurred while changing password');
+        setError('An error occurred while changing password. Please try again.');
       }
     } finally {
       setLoading(false);
@@ -306,7 +320,7 @@ const Profile: React.FC = () => {
                 <div className="space-y-2">
                   <div className="text-xs text-gray-500">Member since</div>
                   <div className="text-sm font-medium text-gray-700">
-                    {new Date().toLocaleDateString()}
+                    {new Date(currentUser.creation_date).toLocaleDateString()}
                   </div>
                 </div>
               </CardContent>
@@ -359,6 +373,7 @@ const Profile: React.FC = () => {
             {activeTab === 'profile' && (
               <Card>
                 <CardContent>
+ manganese
                   <div className="flex items-center mb-6">
                     <User className="h-5 w-5 text-gray-400 mr-2" />
                     <h2 className="text-xl font-semibold text-gray-900">Profile Information</h2>
@@ -447,7 +462,7 @@ const Profile: React.FC = () => {
                   ) : (
                     <>
                       <p className="text-sm text-gray-600 mb-6">
-                        Ensure your account is using a long, random password to stay secure.
+                        Enter your current password and a new password to update your account.
                       </p>
                       <form onSubmit={handlePasswordChange} className="space-y-6">
                         <div>
@@ -459,15 +474,26 @@ const Profile: React.FC = () => {
                               <Lock className="h-4 w-4 text-gray-400" />
                             </div>
                             <input
-                              type="password"
+                              type={showPasswords.currentPassword ? 'text' : 'password'}
                               id="currentPassword"
                               name="currentPassword"
                               value={formData.currentPassword}
                               onChange={handleInputChange}
-                              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                              className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                               placeholder="Enter your current password"
                               required
                             />
+                            <button
+                              type="button"
+                              onClick={() => togglePasswordVisibility('currentPassword')}
+                              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                            >
+                              {showPasswords.currentPassword ? (
+                                <EyeOff className="h-4 w-4 text-gray-400" />
+                              ) : (
+                                <Eye className="h-4 w-4 text-gray-400" />
+                              )}
+                            </button>
                           </div>
                         </div>
 
@@ -481,15 +507,26 @@ const Profile: React.FC = () => {
                                 <Lock className="h-4 w-4 text-gray-400" />
                               </div>
                               <input
-                                type="password"
+                                type={showPasswords.newPassword ? 'text' : 'password'}
                                 id="newPassword"
                                 name="newPassword"
                                 value={formData.newPassword}
                                 onChange={handleInputChange}
-                                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                                 placeholder="Enter new password"
                                 required
                               />
+                              <button
+                                type="button"
+                                onClick={() => togglePasswordVisibility('newPassword')}
+                                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                              >
+                                {showPasswords.newPassword ? (
+                                  <EyeOff className="h-4 w-4 text-gray-400" />
+                                ) : (
+                                  <Eye className="h-4 w-4 text-gray-400" />
+                                )}
+                              </button>
                             </div>
                           </div>
 
@@ -502,33 +539,30 @@ const Profile: React.FC = () => {
                                 <Lock className="h-4 w-4 text-gray-400" />
                               </div>
                               <input
-                                type="password"
+                                type={showPasswords.confirmNewPassword ? 'text' : 'password'}
                                 id="confirmNewPassword"
                                 name="confirmNewPassword"
                                 value={formData.confirmNewPassword}
                                 onChange={handleInputChange}
-                                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                                 placeholder="Confirm new password"
                                 required
                               />
+                              <button
+                                type="button"
+                                onClick={() => togglePasswordVisibility('confirmNewPassword')}
+                                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                              >
+                                {showPasswords.confirmNewPassword ? (
+                                  <EyeOff className="h-4 w-4 text-gray-400" />
+                                ) : (
+                                  <Eye className="h-4 w-4 text-gray-400" />
+                                )}
+                              </button>
                             </div>
                           </div>
                         </div>
 
-                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                          <div className="flex items-start">
-                            <AlertCircle className="h-5 w-5 text-amber-400 mt-0.5 mr-3 flex-shrink-0" />
-                            <div>
-                              <h3 className="text-sm font-medium text-amber-800">Password Requirements</h3>
-                              <ul className="text-sm text-amber-700 mt-1 list-disc list-inside space-y-1">
-                                <li>At least 8 characters long</li>
-                                <li>Include both uppercase and lowercase letters</li>
-                                <li>Include at least one number</li>
-                                <li>Include at least one special character</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
 
                         <div className="flex justify-end pt-4 border-t border-gray-200">
                           <button

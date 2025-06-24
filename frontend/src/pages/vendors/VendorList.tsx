@@ -9,7 +9,7 @@ import { debounce } from 'lodash';
 interface Vendor {
   id: string;
   name: string;
-  category: string; // Comma-separated string, e.g., "wedding,corporate"
+  category: string;
   description: string;
   rating: number;
   price: string;
@@ -56,8 +56,8 @@ export const VendorList = () => {
           description: vendor.description || 'No description available',
           rating: parseFloat(vendor.rating) || 0,
           price: vendor.price ? `$${Number(vendor.price).toFixed(2)}` : '$0.00',
-          contactEmail: vendor.contact_email || '', // Assuming snake_case from backend
-          contactPhone: vendor.contact_phone || '', // Assuming snake_case from backend
+          contactEmail: vendor.contactEmail || '', 
+          contactPhone: vendor.contactPhone || '', 
           image: vendor.image || 'https://via.placeholder.com/300x200?text=No+Image',
         }));
         setVendors(formattedVendors);

@@ -31,7 +31,12 @@ interface EventType {
 export const EventList = () => {
   const { currentUser } = useAuth();
   const [events, setEvents] = useState<Event[]>([]);
-  const [eventTypes, setEventTypes] = useState<EventType[]>([]);
+  const [eventTypes] = useState<EventType[]>([
+    { id_type: 1, type_name: 'Wedding' },
+    { id_type: 2, type_name: 'Birthday' },
+    { id_type: 3, type_name: 'Corporate' },
+    { id_type: 4, type_name: 'Concert' },
+  ]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -43,22 +48,6 @@ export const EventList = () => {
       setLoading(false);
       return;
     }
-
-    const fetchEventTypes = async () => {
-      try {
-        const response = await fetch('http://localhost/pfe/backend/src/api/types.php');
-        const text = await response.text();
-        if (!response.ok) throw new Error('Failed to fetch event types');
-        const data = JSON.parse(text);
-        if (data.success && Array.isArray(data.data)) {
-          setEventTypes(data.data);
-        } else {
-          throw new Error('Invalid event types response structure');
-        }
-      } catch (err) {
-        console.error('Error fetching event types:', err);
-      }
-    };
 
     const fetchEvents = async () => {
       try {
@@ -82,10 +71,8 @@ export const EventList = () => {
         }
         setLoading(false);
       }
-
     };
 
-    fetchEventTypes();
     fetchEvents();
   }, [currentUser]);
 

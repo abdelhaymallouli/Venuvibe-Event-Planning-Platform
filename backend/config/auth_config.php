@@ -9,10 +9,6 @@ define('JWT_EXPIRATION', 86400);; // Token expiration time in seconds (24 hour)
 error_log("auth_config.php loaded: JWT_SECRET=" . substr(JWT_SECRET, 0, 8) . "...");
 define('PASSWORD_RESET_EXPIRATION', 1800); // Password reset token expiration (30 minutes)
 
-// Email settings for password reset (placeholder - would be configured with real SMTP in production)
-define('EMAIL_FROM', 'noreply@example.com');
-define('EMAIL_NAME', 'Authentication System');
-
 // Security settings
 define('PASSWORD_MIN_LENGTH', 8);
 define('BCRYPT_COST', 12); // Higher is more secure but slower

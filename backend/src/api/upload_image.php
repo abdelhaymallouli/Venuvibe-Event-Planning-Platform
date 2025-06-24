@@ -49,7 +49,7 @@ try {
         exit;
     }
 
-    $uploadDir = __DIR__ . '/../uploads';
+    $uploadDir = __DIR__ . '/../uploads/';
     if (!is_dir($uploadDir)) {
         if (!mkdir($uploadDir, 0755, true)) {
             throw new Exception('Failed to create upload directory');

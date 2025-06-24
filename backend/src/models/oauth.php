@@ -10,7 +10,7 @@ class OAuth {
     public function findUserByOAuth($provider, $providerId) {
         try {
             $query = "SELECT c.id_client, c.name AS username FROM oauth_providers op 
-                      JOIN clients c ON op.id_client = c.id_client 
+                      JOIN client c ON op.id_client = c.id_client 
                       WHERE op.provider = :provider AND op.provider_id = :provider_id";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':provider', $provider);
@@ -47,7 +47,7 @@ class OAuth {
         try {
             $this->conn->beginTransaction();
 
-            $query = "INSERT INTO clients (email, name) VALUES (:email, :name)";
+            $query = "INSERT INTO client (email, name) VALUES (:email, :name)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':name', $username);

@@ -27,7 +27,7 @@ public function create() {
 
         if ($stmt->execute()) {
             $this->id = $this->conn->lastInsertId();
-            error_log("User created with ID: " . $this->id); // Debug log
+            error_log("User created with ID: " . $this->id); 
             return true;
         }
 
@@ -36,26 +36,27 @@ public function create() {
     }
 
 public function emailExists() {
-        try {
-            $query = "SELECT id_client, name FROM " . $this->table_name . " WHERE email = :email LIMIT 1";
-            $stmt = $this->conn->prepare($query);
-            $this->email = htmlspecialchars(strip_tags($this->email));
-            $stmt->bindParam(':email', $this->email);
-            $stmt->execute();
+    try {
+        $query = "SELECT id_client, name, password FROM " . $this->table_name . " WHERE email = :email LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $stmt->bindParam(':email', $this->email);
+        $stmt->execute();
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($row) {
-                $this->id_client = $row['id_client'];
-                $this->name = $row['name'];
-                error_log("emailExists found user: id=" . $this->id_client . ", email=" . $this->email);
-                return true;
-            }
-            return false;
-        } catch (PDOException $e) {
-            error_log("emailExists error: " . $e->getMessage());
-            return false;
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row) {
+            $this->id = $row['id_client'];
+            $this->name = $row['name'];
+            $this->password = $row['password']; 
+            error_log("emailExists found user: id=" . $this->id . ", email=" . $this->email);
+            return true;
         }
+        return false;
+    } catch (PDOException $e) {
+        error_log("emailExists error: " . $e->getMessage());
+        return false;
     }
+}
     public function getById($id) {
         $query = "SELECT id_client, name, email, creation_date 
                   FROM " . $this->table_name . " 
