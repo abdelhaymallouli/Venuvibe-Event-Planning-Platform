@@ -56,7 +56,7 @@
 \noindent
 \begin{minipage}[t]{0.5\textwidth} % Minipage for left logo
     \raggedright % Aligns content to the left within this minipage
-    \includegraphics[width=0.5\textwidth]{./ofppt_logo.jpg}
+    \includegraphics[width=0.2\textwidth]{./ofppt-logo.png}
 \end{minipage}
 \hfill % Pushes the next minipage to the right
 \begin{minipage}[t]{0.45\textwidth} % Minipage for right logo
@@ -78,11 +78,11 @@
 \begin{flushleft} % Start Student Information from the left
 {\large\textbf{Student Information:}}
 \vspace{0.3cm}
-Nom et prénom : MALLOULI ABDELHAY\\
-Niveau : FQ\\
-Filière : Développeur Web – mode Bootcamp\\
-Groupe : DWB101\\
-Année de Formation : 2024-2025
+First and last name : MALLOULI ABDELHAY\\
+Level: Qualifying training\\
+Course: Web Developer – Bootcamp mode\\
+Group: DWB101\\
+Training Year: 2024-2025
 \end{flushleft}
 
 \vspace{1.5cm}
@@ -91,8 +91,7 @@ Année de Formation : 2024-2025
 {\large\textbf{Supervisor Information:}}
 \vspace{0.3cm}
 Professor: Fatine Chebab\\
-Title/Department: [Supervisor's Title/Department]\\
-University/Institution: [Supervisor's University/Institution]
+Institution: Solicode
 \end{flushleft}
 
 \vspace{1.5cm}
@@ -125,12 +124,16 @@ Website: \url{https://solicode.co/}
 % --- Abstract ---
 \begin{abstract}
     \addcontentsline{toc}{chapter}{Abstract} % Add "Abstract" to the Table of Contents
-    \section*{Abstract} % Unnumbered heading for Abstract
-    This Final Project Report details the design, development, and evaluation of a comprehensive full-stack web application for event and vendor management. The primary goal of this project is to address the fragmented and inefficient nature of current event planning processes by providing a centralized, integrated platform. The application leverages modern web technologies, specifically PHP for a robust RESTful API, React and TypeScript for a dynamic and responsive frontend, and MySQL for reliable data storage.
+\section*{Abstract} % Unnumbered heading for Abstract
+This Final Project Report details the design, development, and evaluation of a comprehensive full-stack web application for event and vendor management. The primary goal of this project is to address the fragmented and inefficient nature of current event planning processes by providing a centralized, integrated platform. The application leverages modern web technologies, specifically PHP for a robust RESTful API, React and TypeScript for a dynamic and responsive frontend, and MySQL for reliable data storage.
 
-    The report outlines the core functionalities, including secure user authentication with JWT and OAuth 2.0, comprehensive CRUD operations for events, vendor registration and listing, and a dedicated administrator dashboard. It also covers the system's architecture, database design, and key implementation details. Rigorous testing, encompassing API endpoint validation and user acceptance testing, confirmed the application's functionality, reliability, and adherence to security standards, including role-based access control and server-side data validation.
+The report outlines the core functionalities, including secure user authentication with JWT and OAuth 2.0, comprehensive CRUD operations for events, vendor registration and listing, and a dedicated administrator dashboard. It also covers the system's architecture, database design, and key implementation details. Rigorous testing, encompassing API endpoint validation and user acceptance testing, confirmed the application's functionality, reliability, and adherence to security standards, including role-based access control and server-side data validation.
 
-    The project successfully delivers a practical solution for streamlining event coordination and fostering efficient collaboration between event organizers and service providers. It concludes by summarizing the achievements, discussing challenges encountered during development, and proposing future enhancements such as real-time notifications, payment gateway integration, and advanced analytics, aiming to further enrich the application's utility and user experience.
+The project successfully delivers a practical solution for streamlining event coordination and fostering efficient collaboration between event organizers and service providers. It concludes by summarizing the achievements, discussing challenges encountered during development, and proposing future enhancements such as real-time notifications, payment gateway integration, and advanced analytics, aiming to further enrich the application's utility and user experience.
+
+\bigskip
+\textbf{Acknowledgment:} I would like to express my sincere gratitude to my teacher, Fatine Chebab, for her guidance and support throughout this project. I also extend heartfelt thanks to my teammate, my classmates for the collaborative environment, and my family for their continuous encouragement and support.
+
 \end{abstract}
 \newpage
 
@@ -176,8 +179,8 @@ To effectively tackle the identified problems, this project sets forth the follo
 \begin{itemize}
     \item \textbf{User Registration and Profile Management:} Users can create accounts, log in, and manage their personal profiles, including updating contact information and passwords.
     \item \textbf{Full CRUD Functionality for Events:} Event organizers can create, read, update, and delete event details, including dates, locations, descriptions, and associated images.
-    \item \textbf{Vendor Registration and Listing:} Vendors can register their services, create detailed profiles, and list their offerings for event organizers to browse.
-    \item \textbf{Admin Dashboard for Oversight:} Administrators will have a dedicated interface to manage users, events, and vendors, ensuring system integrity and compliance.
+    \item \textbf{Vendor Listing:} Vendors can list their offerings for event organizers to browse by contacting the admin of website.
+    \item \textbf{Admin Dashboard for Oversight:} Administrators will have a dedicated interface to manage users, events, and create and manage vendors, ensuring system integrity and compliance.
     \item \textbf{Secure User Authentication with JWT and OAuth 2.0:} Implementation of industry-standard authentication protocols to ensure secure access and data exchange.
     \item \textbf{Request Management:} Users can send service requests to vendors for specific events, and vendors can manage these requests.
 \end{itemize}
@@ -743,7 +746,7 @@ While the current application provides a solid foundation for event and vendor m
 \begin{itemize}
     \item \textbf{Real-time Notifications:} Implementing WebSockets could enable real-time communication features, such as instant notifications for new service requests, status updates on events, or chat functionalities between organizers and vendors. This would significantly enhance user engagement and responsiveness.
     \item \textbf{Payment Integration:} Integrating with popular payment gateways like Stripe or PayPal would allow for direct processing of event ticketing payments or vendor service fees within the application. This would provide a complete end-to-end solution for financial transactions related to events.
-    \item \textbf{Advanced Search and Filtering:} Enhancing the search capabilities for events and vendors with more advanced filtering options (e.g., by location radius, specific service types, availability, price range) would improve discoverability and user efficiency.
+    \item \textbf{Vendor Login and Creating:} let the vendor Create 
     \item \textbf{Mobile Responsiveness and Native Mobile Applications:} While the current frontend is responsive, further optimizing the UI/UX for mobile devices and potentially developing native iOS and Android applications would significantly broaden the application's reach and accessibility.
     \item \textbf{Deployment and Scalability:} Migrating the application from a local development environment (e.g., XAMPP/LAMP stack) to a cloud hosting provider (such as AWS, Google Cloud Platform, or DigitalOcean) would enable robust deployment, improved scalability, and higher availability for a production environment.
     \item \textbf{User Review and Rating System:} Implementing a system where event organizers can leave reviews and ratings for vendors, and vice-versa, would foster trust and provide valuable feedback for the community.
