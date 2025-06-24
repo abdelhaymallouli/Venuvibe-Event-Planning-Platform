@@ -37,29 +37,29 @@ const Signup: React.FC = () => {
     }
   };
 
-const googleLoginHandler = useGoogleLogin({
-  onSuccess: async (tokenResponse) => {
-    try {
-      setError('');
-      setLoading(true);
-      const response = await googleLogin({ code: tokenResponse.code }); 
-      if (response.status === 'success') {
-        navigate('/dashboard');
-      } else {
-        setError(response.error || 'Google sign-in failed.');
+  const googleLoginHandler = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        setError('');
+        setLoading(true);
+        const response = await googleLogin({ code: tokenResponse.code }); 
+        if (response.status === 'success') {
+          navigate('/dashboard');
+        } else {
+          setError(response.error || 'Google sign-in failed.');
+        }
+      } catch (err: any) {
+        setError(err.response?.data?.error || 'Failed to sign in with Google');
+      } finally {
+        setLoading(false);
       }
-    } catch (err: any) {
-      setError(err.response?.data?.error || 'Failed to sign in with Google');
-    } finally {
-      setLoading(false);
-    }
-  },
-  onError: () => {
-    setError('Google sign-in failed. Please try again.');
-  },
-  flow: 'auth-code', 
-  scope: 'openid profile email',
-});
+    },
+    onError: () => {
+      setError('Google sign-in failed. Please try again.');
+    },
+    flow: 'auth-code', 
+    scope: 'openid profile email',
+  });
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -208,8 +208,13 @@ const googleLoginHandler = useGoogleLogin({
             <div className="mt-6 grid grid-cols-1">
               <button
                 onClick={() => googleLoginHandler()}
-                className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
+                <img
+                  src="https://www.google.com/favicon.ico"
+                  alt="Google logo"
+                  className="h-5 w-5 mr-2"
+                />
                 Sign up with Google
               </button>
             </div>
