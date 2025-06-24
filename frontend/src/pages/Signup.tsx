@@ -42,7 +42,7 @@ const googleLoginHandler = useGoogleLogin({
     try {
       setError('');
       setLoading(true);
-      const response = await googleLogin({ code: tokenResponse.code }); // Pass code instead of id_token
+      const response = await googleLogin({ code: tokenResponse.code }); 
       if (response.status === 'success') {
         navigate('/dashboard');
       } else {
@@ -57,7 +57,7 @@ const googleLoginHandler = useGoogleLogin({
   onError: () => {
     setError('Google sign-in failed. Please try again.');
   },
-  flow: 'auth-code', // Keep auth-code flow
+  flow: 'auth-code', 
   scope: 'openid profile email',
 });
 

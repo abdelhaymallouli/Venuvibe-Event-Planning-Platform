@@ -86,7 +86,7 @@ if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&
 }
 
 // Hash the new password
-$user->password = password_hash($data->newPassword, PASSWORD_DEFAULT);
+$user->password = password_hash($data->newPassword, PASSWORD_BCRYPT);
 
 // Update the password
 if ($user->updatePassword()) {

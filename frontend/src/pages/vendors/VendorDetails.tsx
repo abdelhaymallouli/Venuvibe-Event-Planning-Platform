@@ -130,12 +130,11 @@ useEffect(() => {
             <p className="text-gray-600 mb-6">
               The vendor you're looking for doesn't exist or has been removed.
             </p>
-            <button
-              onClick={() => navigate('/vendors')}
-              className="px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors"
-            >
+          <Link to="/vendors" className="mt-4 mb-4 inline-block">
+            <Button variant="outline" leftIcon={<ArrowLeft size={16} />}>
               Back to Vendors
-            </button>
+            </Button>
+          </Link>
           </div>
         </div>
       </div>
@@ -154,11 +153,11 @@ useEffect(() => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
-        <Link to="/vendors">
-          <Button variant="outline" leftIcon={<ArrowLeft size={18} />}>
-            Back to Vendors
-          </Button>
-        </Link>
+          <Link to="/vendors" className="mt-4 mb-4 inline-block">
+            <Button variant="outline" leftIcon={<ArrowLeft size={16} />}>
+              Back to Vendors
+            </Button>
+          </Link>
         {/* Main Content */}
         <div className="bg-white m-px-20 rounded-2xl shadow-xl overflow-hidden">
           {/* Hero Section */}
