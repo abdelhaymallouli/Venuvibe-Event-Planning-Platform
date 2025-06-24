@@ -29,10 +29,10 @@ try {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
     $dotenv->load();
 
-    $googleClientId = getenv('GOOGLE_CLIENT_ID');
-    $googleClientSecret = getenv('GOOGLE_CLIENT_SECRET');
-    $jwtSecret = getenv('JWT_SECRET');
-    $jwtExpiration = getenv('JWT_EXPIRATION');
+    $googleClientId = "381704482143-4l5d9dg7uni97oo5jquh3at5jmt0ee00.apps.googleusercontent.com";
+    $googleClientSecret = "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";
+    $jwtSecret = "4b48ff8c31ba999fb73fd12310cfc2c1";
+    $jwtExpiration = "86400";
 
     error_log("GOOGLE_CLIENT_ID: " . ($googleClientId ?: 'Not set'));
     error_log("GOOGLE_CLIENT_SECRET: " . ($googleClientSecret ?: 'Not set'));
