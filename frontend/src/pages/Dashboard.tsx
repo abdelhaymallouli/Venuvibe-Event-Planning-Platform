@@ -200,20 +200,7 @@ export const Dashboard = () => {
     }
   };
 
-  const getTaskStatusVariant = (statut: string) => {
-    switch (statut) {
-      case 'Open':
-        return 'primary';
-      case 'In Progress':
-        return 'secondary';
-      case 'Completed':
-        return 'success';
-      case 'Cancelled':
-        return 'error';
-      default:
-        return 'primary';
-    }
-  };
+
 
   if (isLoading) {
     return <div className="text-center py-8">Loading...</div>;
